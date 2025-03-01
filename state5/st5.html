@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Project</title>
+    <link rel="stylesheet" href="st5.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Demo Projects</h2>
+        
+        <div class="section">
+            <h3>To-Do List</h3>
+            <input type="text" id="todoInput" placeholder="เพิ่มรายการ">
+            <button onclick="addTodo()">เพิ่ม</button>
+            <button onclick="clearTodos()">เคลียร์ทั้งหมด</button>
+            <ul id="todoList"></ul>
+        </div>
+
+        <div class="section">
+            <h3>Student Grade Calculator</h3>
+            <div id="gradeInputs"></div>
+            <button onclick="calculateGPA()">คำนวณ GPA</button>
+            <p>GPA: <span id="gpaResult"></span></p>
+        </div>
+        
+        <div class="section">
+            <h3>API Data Fetching</h3>
+            <button onclick="fetchUsers()">ดึงข้อมูลผู้ใช้</button>
+            <ul id="userList"></ul>
+        </div>
+
+        <div class="section">
+            <h3>Lottery Generator</h3>
+            <input type="number" id="lotteryGuess" placeholder="กรอกเลข 6 หลัก">
+            <button onclick="generateLottery()">สุ่มเลข</button>
+            <p>เลขที่ออก: <span id="lotteryNumber"></span></p>
+            <p>ผลลัพธ์: <span id="lotteryResult"></span></p>
+        </div>
+    </div>
+    <script src="st5.js"></script>
+</body>
+</html>
