@@ -9,23 +9,30 @@
 <body>
     <h1>Algorithm Demonstration</h1>
     
-    <label for="radius">Enter Radius:</label>
-    <input type="number" id="radius" min="1" step="1" />
-    <button onclick="calculateCircumference()">Calculate Circle Circumference</button>
-    <p id="circumferenceResult"></p>    
-    
-    <label for="age">Enter Age:</label>
-    <input type="number" id="age" min="1" />
-    <button onclick="checkAge()">Check Age Category</button>
-    <p id="ageResult"></p>
-    
-    <label for="number">Enter a Number:</label>
-    <input type="number" id="number" />
-    <button onclick="checkEvenOdd()">Check Even/Odd</button>
-    <p id="evenOddResult"></p>
-    
-    <button onclick="generateRandomSort()">Generate & Sort Random Numbers</button>
-    <p id="sortedNumbers"></p>
+    <!-- Existing Elements -->
+
+    <!-- For Loop -->
+    <button onclick="forLoopExample()">Show Numbers 1 to 10</button>
+    <p id="forLoopResult"></p>
+
+    <!-- While Loop -->
+    <button onclick="whileLoopExample()">Start Input Loop</button>
+    <p id="whileLoopResult"></p>
+
+    <!-- Recursive Algorithms -->
+    <label for="factorialInput">Enter a Number for Factorial:</label>
+    <input type="number" id="factorialInput" />
+    <button onclick="calculateFactorial()">Calculate Factorial</button>
+    <p id="factorialResult"></p>
+
+    <label for="fibonacciInput">Enter a Number for Fibonacci:</label>
+    <input type="number" id="fibonacciInput" />
+    <button onclick="calculateFibonacci()">Calculate Fibonacci Sequence</button>
+    <p id="fibonacciResult"></p>
+
+    <!-- Debugging and Error Handling -->
+    <button onclick="testDebugging()">Test Debugging</button>
+    <p id="debuggingResult"></p>
     
     <script src="st4.js"></script>
 </body>
