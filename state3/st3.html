@@ -9,11 +9,12 @@
 <body>
     <h1>Interactive Web Page</h1>
     
-    <button id="changeColorBtn">Change Background Color</button>
-    
-    <p id="hoverText">Hover over me!</p>
-    
-    <input type="text" id="inputBox" placeholder="Type something...">
+    <button id="changeColorBtn" onclick="changeColor()">Change Background Color</button>
+
+    <p id="hoverText" onmouseover="hoverEffect(this)" onmouseout="resetHover(this)">Hover over me!</p>
+
+    <input type="text" id="inputBox" onkeyup="logInput(this)" placeholder="Type something...">
+    <p id="displayText"></p>
     
     <form id="userForm">
         <label for="name">Name:</label>
@@ -24,6 +25,8 @@
         
         <button type="submit">Submit</button>
     </form>
+
+    <button id="alertBtn">Click Me</button>
     
     <script src="st3.js"></script>
 </body>

@@ -1,6 +1,6 @@
-document.getElementById("changeColorBtn").addEventListener("click", function() {
+function changeColor() {
     document.body.style.backgroundColor = getRandomColor();
-});
+}
 
 function getRandomColor() {
     const letters = "0123456789ABCDEF";
@@ -11,17 +11,18 @@ function getRandomColor() {
     return color;
 }
 
-document.getElementById("hoverText").addEventListener("mouseover", function() {
-    this.style.color = "blue";
-});
+function hoverEffect(element) {
+    element.style.color = "blue";
+}
 
-document.getElementById("hoverText").addEventListener("mouseout", function() {
-    this.style.color = "black";
-});
+function resetHover(element) {
+    element.style.color = "black";
+}
 
-document.getElementById("inputBox").addEventListener("keyup", function() {
-    console.log("User typed: " + this.value);
-});
+function logInput(element) {
+    console.log("User typed: " + element.value);
+    document.getElementById("displayText").textContent = "You typed: " + element.value;
+}
 
 document.getElementById("userForm").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -35,4 +36,8 @@ document.getElementById("userForm").addEventListener("submit", function(event) {
     }
     
     alert("Form submitted successfully!\nName: " + name + "\nEmail: " + email);
+});
+
+document.getElementById("alertBtn").addEventListener("click", function() {
+    alert("คุณคลิกปุ่ม!");
 });
