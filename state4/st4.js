@@ -92,7 +92,7 @@ function calculateFactorial() {
     let result;
     try {
         if (n < 0) {
-            result = "Unable to calculate for negative numbers.";
+            result = "อย่าใส่จำนวนติดลบสิ!";
         } else if (n === 0) {
             result = 1;
         } else {
@@ -116,7 +116,7 @@ function calculateFibonacci() {
     let result;
     try {
         if (n < 0) {
-            result = "Unable to calculate for negative numbers.";
+            result = "อย่าใส่จำนวนติดลบสิ!";
         } else {
             result = fibonacci(n);
         }
