@@ -6,44 +6,40 @@ document.addEventListener("DOMContentLoaded", function() {
         div.innerHTML = `${sub} คะแนน: <input type='number' id='${sub}' min='0' max='100'>`;
         gradeInputs.appendChild(div);
     });
-    loadTodos();  // Load existing todos from localStorage
+    loadTodos();
 });
 
 function addTodo() {
     let input = document.getElementById("todoInput");
-    let list = document.getElementById("todoList");
+    let todoList = JSON.parse(localStorage.getItem("todos")) || [];
 
-    if (input.value) {
-        let todoList = JSON.parse(localStorage.getItem("todos")) || [];  // Get existing todos from localStorage
-        todoList.push(input.value);  // Add new todo item
+    if (!input.value) return;
 
-        // Save updated list back to localStorage
-        localStorage.setItem("todos", JSON.stringify(todoList));
-
-        // Clear input field
-        input.value = "";
-        displayTodos();
+    if (todoList.includes(input.value)) {
+        alert("ใส่รายการเดิมซ้ำไม่ได้");
+        return;
     }
+
+    todoList.push(input.value);
+    localStorage.setItem("todos", JSON.stringify(todoList));
+    input.value = "";
+    displayTodos();
 }
 
 function displayTodos() {
     let list = document.getElementById("todoList");
     let todoList = JSON.parse(localStorage.getItem("todos")) || [];
-
-    list.innerHTML = "";  // Clear the current list
-
+    list.innerHTML = "";
     todoList.forEach((todo, index) => {
         let li = document.createElement("li");
         li.textContent = todo;
-
         let removeBtn = document.createElement("button");
         removeBtn.textContent = " ลบ";
         removeBtn.onclick = function () {
-            todoList.splice(index, 1);  // Remove item from the array
-            localStorage.setItem("todos", JSON.stringify(todoList));  // Save updated list
-            displayTodos();  // Re-display updated list
+            todoList.splice(index, 1);
+            localStorage.setItem("todos", JSON.stringify(todoList));
+            displayTodos();
         };
-
         li.appendChild(removeBtn);
         list.appendChild(li);
     });
@@ -51,11 +47,11 @@ function displayTodos() {
 
 function clearTodos() {
     localStorage.removeItem("todos");
-    displayTodos();  // Clear the displayed list
+    displayTodos();
 }
 
 function loadTodos() {
-    displayTodos();  // Load todos when the page is loaded
+    displayTodos();
 }
 
 function calculateGPA() {
@@ -107,12 +103,34 @@ function fetchUsers() {
         .then(data => {
             let userList = document.getElementById("userList");
             userList.innerHTML = "";
-            data.slice(0, 5).forEach(user => {
+            data.slice(0, 10).forEach(user => {
                 let li = document.createElement("li");
                 li.textContent = `${user.name} - ${user.email}`;
                 userList.appendChild(li);
             });
         });
+}
+
+function searchUserById() {
+    let userId = prompt("ใส่เลขไอดีที่ต้องการค้นหา");
+    if (!userId || isNaN(userId) || parseInt(userId) <= 0) {
+        alert("โปรดใส่เลขไอดีที่ถูกต้อง");
+        return;
+    }
+    
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then(response => {
+            if (!response.ok) throw new Error("ไม่พบผู้ใช้ โปรดใส่เพียงเลข 1-10");
+            return response.json();
+        })
+        .then(user => {
+            let userList = document.getElementById("userList");
+            userList.innerHTML = "";
+            let li = document.createElement("li");
+            li.textContent = `${user.name} - ${user.email}`;
+            userList.appendChild(li);
+        })
+        .catch(error => alert(error.message));
 }
 
 function generateLottery() {
@@ -126,7 +144,7 @@ function generateLottery() {
     // ตรวจสอบว่าเลขที่กรอกมีความยาว 6 หลัก
     if (guess.length !== 6) {
         document.getElementById("lotteryResult").textContent = "";
-        errorMessage.textContent = "โปรดใส่เลข 6 หลักเท่านั้น";
+        errorMessage.textContent = "โปรดใส่เลข 6 หลัก";
         return;
     }
 
